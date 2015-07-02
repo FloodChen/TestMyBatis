@@ -1,16 +1,16 @@
 package com.uestc.testmybatis.entity;
 
 public class MyMessage {
-	private String id;
+	private int id;
 	private String command;
 	private String description;
 	private String content;
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

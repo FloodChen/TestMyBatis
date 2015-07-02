@@ -11,6 +11,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta http-equiv="X-UA-Compatible"content="IE=9; IE=8; IE=7; IE=EDGE" />
 		<title>内容列表页面</title>
 		<link href="<%=basePath %>static/css/all.css" rel="stylesheet" type="text/css" />
+		<script src="<%=basePath%>static/js/common/jquery-1.8.0.min.js"></script>
+		<script src="<%=basePath%>static/js/list.js"></script>
 	</head>
 	<body style="background: #e1e9eb;">
 		<form action="<%=basePath %>list.action" id="mainForm" method="post">
@@ -52,8 +54,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<td>${message.command}</td>
 										<td>${message.description }</td>
 										<td>
-											<a href="#">修改</a>&nbsp;&nbsp;&nbsp;
-											<a href="#">删除</a>
+											<a id="update" href="#">修改</a>&nbsp;&nbsp;&nbsp;
+											<a id="deleteone" href="${basePath}deleteone.action?id=${message.id}">删除</a>
 										</td>
 									</tr>
 								</c:forEach>
@@ -74,5 +76,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 	    </form>
+	    <form action ="" id="postform" method= "post" >
+      		<input type ="hidden" name= "_method" value = "">
+		</form>
+		<script>
+			$(document).ready(function(){
+				$("a").click(function() {
+				 	event.preventDefault();//使a自带的方法失效
+					var href = $(this).attr("href");
+					$("#postform").attr("action", href).submit();
+					return false;
+				});
+			});
+		</script>
 	</body>
 </html>

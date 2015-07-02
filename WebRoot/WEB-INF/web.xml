@@ -9,9 +9,18 @@
     <servlet-name>ListServlet</servlet-name>
     <servlet-class>com.uestc.testmybatis.servlet.ListServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>DeleteOneMessageServlet</servlet-name>
+    <servlet-class>com.uestc.testmybatis.servlet.DeleteOneMessageServlet</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>ListServlet</servlet-name>
     <url-pattern>/list.action</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteOneMessageServlet</servlet-name>
+    <url-pattern>/deleteone.action</url-pattern>
   </servlet-mapping>
   
   

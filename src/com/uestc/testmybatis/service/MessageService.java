@@ -12,4 +12,10 @@ public class MessageService {
 
 		return messageDao.getAllMessage(command, description);
 	}
+
+	public void deleteOneMessage(String id) {
+		if (null != id && !"".equals(id.trim())) {
+			messageDao.deleteOneMessage(Integer.parseInt(id));
+		}
+	}
 }
