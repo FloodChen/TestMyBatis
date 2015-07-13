@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="right">
 				<div class="current">当前位置：<a href="javascript:void(0)" style="color:#6E6E6E;">内容管理</a> &gt; 内容列表</div>
 				<div class="rightCont">
-					<p class="g_title fix">内容列表 <a class="btn03" href="#">新 增</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn03" href="#">删 除</a></p>
+					<p class="g_title fix">内容列表 <a class="btn03" href="#">新 增</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn03" href="javascript:deleteBatch('<%=basePath %>')">删 除</a></p>
 					<table class="tab1">
 						<tbody>
 							<tr>
@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<table class="tab2" width="100%">
 							<tbody>
 								<tr>
-								    <th><input type="checkbox" id="all" onclick="#"/></th>
+								    <th><input type="checkbox" id="checkboxall" onclick="checkall()"/></th>
 								    <th>序号</th>
 								    <th>名称</th>
 								    <th>描述</th>
@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</tr>
 								<c:forEach items="${messageList}" var="message" varStatus="status">
 									<tr <c:if test="${status.index%2!=0 }">style="background-color:#ECF6EE;" </c:if> >
-										<td><input type="checkbox" /></td>
+										<td><input type="checkbox" name="id" value="${message.id}"/></td>
 										<td>${status.index+1}</td>
 										<td>${message.command}</td>
 										<td>${message.description }</td>
@@ -79,15 +79,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    <form action ="" id="postform" method= "post" >
       		<input type ="hidden" name= "_method" value = "">
 		</form>
-		<script>
-			$(document).ready(function(){
-				$("a").click(function() {
-				 	event.preventDefault();//使a自带的方法失效
-					var href = $(this).attr("href");
-					$("#postform").attr("action", href).submit();
-					return false;
-				});
-			});
-		</script>
 	</body>
 </html>

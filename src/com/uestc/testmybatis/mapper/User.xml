@@ -15,8 +15,16 @@
     <if test="null != command and !&quot;&quot;.equals(command.trim())">and COMMAND=#{command}</if>
     <if test="null != description and !&quot;&quot;.equals(description.trim())">and DESCRIPTION like '%' #{description} '%'</if>
   </select>
+  
   <delete id="deleteOneMessage" parameterType="int">
   	delete from message where ID=#{_parameter}
+  </delete>
+  <delete id="deleteBatchMessage" parameterType="java.util.List">
+   	delete from message where ID in (
+   		<foreach collection="list" item="item" separator=",">
+   			#{item}
+   		</foreach>
+   	)
   </delete>
 <!-- 
   <select id="version" parameterType="long" resultType="int">

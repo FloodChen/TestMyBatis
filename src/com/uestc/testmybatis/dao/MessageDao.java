@@ -35,7 +35,7 @@ public class MessageDao {
 		try {
 			sqlSession = dbAccess.getSqlSession();
 			sqlSession.delete("Message.deleteOneMessage", id);
-			sqlSession.commit();
+			sqlSession.commit();//删除操作要提交事务
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -45,6 +45,21 @@ public class MessageDao {
 		}
 
 	}
+
+	public void deleteBatchMessage(List<Integer> ids) {
+		try {
+			sqlSession = dbAccess.getSqlSession();
+			sqlSession.delete("Message.deleteBatchMessage", ids);
+			sqlSession.commit();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (null != sqlSession) {
+				sqlSession.close();
+			}
+		}
+	}
+
 	/*传统jdbc处理方式
 	private Connection connection;
 	public MessageDao() {
